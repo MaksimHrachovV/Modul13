@@ -29,8 +29,11 @@
             <td  th:text="${note.id}"></td>
             <td  th:text="${note.title}"></td>
             <td  th:text="${note.content}"></td>
-            <td> <a th:href="@{/note/edit/{id}(id=${note.id})}" class="btn btn-primary">Update</a>
-                <a th:href="@{/note/delete/{id}(id=${note.id})}" class="btn btn-danger">Delete</a>
+            <td> <a th:href="@{/note/edit(id=${note.id})}" class="btn btn-primary">Update</a>
+                <form th:action="@{/note/delete}" method="post" class="d-inline">
+                    <input type="hidden" name="id" th:value="${note.id}">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </td>
         </tr>
         </tbody>

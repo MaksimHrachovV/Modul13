@@ -32,8 +32,8 @@ public class NoteController {
         return "redirect:/note/list";
     }
 
-    @GetMapping("/edit/{id}")
-    public String UpdateNote(@PathVariable(value = "id") long id, Model model) {
+    @GetMapping("/edit")
+    public String UpdateNote(@RequestParam("id") long id, Model model) {
 
         Note note = noteService.getById(id);
         model.addAttribute("note", note);
@@ -51,8 +51,8 @@ public class NoteController {
         model.addAttribute("alllist", noteService.listAll());
         return "page";
     }
-    @GetMapping("/delete/{id}")
-    public String deleteNote(@PathVariable(value = "id")  long id) {
+    @PostMapping("/delete")
+    public String deleteNote(@RequestParam("id")  long id) {
 
         noteService.deleteById(id);
         return "redirect:/note/list";
